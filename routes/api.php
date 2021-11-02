@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 #import controller animal
 use App\Http\Controllers\AnimalController;
-
+use App\Http\Controllers\StudentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +30,7 @@ Route::post ("/animals", [AnimalController::class, "store"]);
 Route::put("/animals/{id}", [AnimalController::class, "update"]);
 
 Route::delete("/animals/{id}", [AnimalController::class, "destroy"]);
+
+#Routing Students
+
+Route::get("/students", [StudentsController::class, "index"]);
