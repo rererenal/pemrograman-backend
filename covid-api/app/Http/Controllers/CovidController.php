@@ -96,8 +96,34 @@ class CovidController extends Controller
 
     #controller put
 
-    public function update($id){
-        echo $id;
+    public function update(Request $request, $id){
+        $user_response = Covid::find($id);
+
+        if ($user_response){
+            $user_response->update([
+                'name' => $request->name ?? $user_response->name,
+                'phone' => $request->phone ?? $user_response->phone,
+                'address' => $request->address ?? $user_response->address,
+                'status' => $request->status ?? $user_response->status,
+                'in_date_at' => $request->in_date_at ?? $user_response->in_date_at,
+                'out_date_at' => $request->out_date_at ?? $user_response->out_date_at
+            ]);
+            $resource = [
+                'messagge' => 'Update Successfully',
+                'resource' => $user_response
+            ];
+
+            return response()->json($user_response,201);
+        }
+
+        else {
+            $resource = [
+                'messagge' => 'Data Not Found',
+                'resource' => $user_response
+            ];
+
+            return response()->json($user_response,404);
+        }
     }
 
     #controller delete
