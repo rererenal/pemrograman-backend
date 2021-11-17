@@ -26,6 +26,18 @@ Route::get("/patients", [CovidController::class, 'index']);
 //get detail resource
 Route::get("/patients/{id}", [CovidController::class, 'show']);
 
+//get detail search name
+Route::get("/patients/search/{name}", [CovidController::class, 'search']);
+
+//get detail positive
+Route::get("/patients/status/positive", [CovidController::class, 'positive']);
+
+//get detail recovered
+Route::get("/patients/status/recovered", [CovidController::class, 'recovered']);
+
+//get detail dead
+Route::get("/patients/status/dead", [CovidController::class, 'dead']);
+
 
 #Route POST COVID-API
 Route::post("/patients", [CovidController::class, 'store']);

@@ -55,33 +55,98 @@ class CovidController extends Controller
     }
 
     public function search($name){
-        echo $name;
+        //mencari data nama sesuai input menggunakan eloquent where
+        $user_get = Covid::where('name', $name)->get();
+
+        if ($user_get){
+            $resource = [
+                'messagge' => 'Get Data Detail By Name',
+                'resource' =>  $user_get
+            ];
+
+            return response()->json($resource,200);
+        }
+
+        else {
+            $resource = [
+                'messagge' => 'Data Not Found',
+                'resource' => $user_get
+            ];
+            return response()->json($resource,404);
+        }
     }
 
     public function positive(){
-        echo 'test';
+        //mencari status positive menggunakan eloquent where
+        $user_get = Covid::where('status', 'positive')->get();
+
+        if ($user_get){
+            $resource = [
+                'messagge' => 'Get Data Positive',
+                'resource' => $user_get
+            ];
+            return response()->json($resource,200);
+        }
+        else {
+            $resource = [
+                'messagge' => 'Data Not Found',
+                'resource' => $user_get
+            ];
+            return response()->json($resource,404);
+        }
     }
 
     public function recovered(){
-        echo 'test';
+        $user_get = Covid::where('status', 'recovered')->get();
+
+        if ($user_get){
+            $resource = [
+                'messagge' => 'Get Data Recovered',
+                'resource' => $user_get
+            ];
+            return response()->json($resource,200);
+        }
+        else {
+            $resource = [
+                'messagge' => 'Data Not Found',
+                'resource' => $user_get
+            ];
+            return response()->json($resource,404);
+        }
     }
 
     public function dead(){
-        echo 'test';
+
+        $user_get = Covid::where('status', 'dead')->get();
+
+        if ($user_get){
+            $resource = [
+                'messagge' => 'Get Data Dead',
+                'resource' => $user_get
+            ];
+            return response()->json($resource,200);
+        }
+        else {
+            $resource = [
+                'messagge' => 'Data Not Found',
+                'resource' => $user_get
+            ];
+            return response()->json($resource,404);
+        }
     }
 
     #membuat controller post
 
     public function store(Request $request){
         //menangkap input user
-        $input = [
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'status' => $request->status,
-            'in_date_at' => $request->in_date_at,
-            'out_date_at' => $request->out_date_at
-        ];
+        $input = $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'status' => 'required',
+            'in_date_at' => 'required',
+            'out_date_at' => 'nullable'
+        ]);
         //memasukan input pada varible sementara untuk direturn
         //memasukan input ke database
         $user_input = Covid::create($input);
@@ -101,7 +166,7 @@ class CovidController extends Controller
 
         if ($user_response){
             $user_response->update([
-                'name' => $request->name ?? $user_response->name,
+                'name' => $request->name ?? $user_response->name, // ?? merupakan statement ketika response update tidak diisi maka akan memakai data yang lama
                 'phone' => $request->phone ?? $user_response->phone,
                 'address' => $request->address ?? $user_response->address,
                 'status' => $request->status ?? $user_response->status,
@@ -129,6 +194,7 @@ class CovidController extends Controller
     #controller delete
 
     public function destroy($id){
+        //mencari id sesuai input menggunakan eloquent find
         $user_get = Covid::find($id);
 
         if ($user_get){
