@@ -178,7 +178,7 @@ class CovidController extends Controller
                 'resource' => $user_response
             ];
 
-            return response()->json($user_response,201);
+            return response()->json($resource,201);
         }
 
         else {
@@ -187,7 +187,7 @@ class CovidController extends Controller
                 'resource' => $user_response
             ];
 
-            return response()->json($user_response,404);
+            return response()->json($resource,404);
         }
     }
 
