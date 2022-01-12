@@ -1,22 +1,24 @@
 //memanggil data
 const students = require("../data/student");
+//memanggil models
+const Student = require("../models/Student");
 
 class StudentController {
-    index (req, res){
+    async index (req, res){
+        const resource = await Student.all();
         const data = {
             message : "Menampilkan data student",
-            data : students
+            data : resource
         }
-        res.json(data);
+        res.status(200).json(data);
     }
-    store(req, res){
-        const {name} = req.body 
-        students.push(name);
+    async store(req, res){
+        const insert = await Student.create(req.body);
         const data = {
             message : "Menambahkan data student",
-            data : students
+            data : insert
         }
-        res.json(data);
+        res.status(201).json(data);
     }
     update(req, res){
         const {id} = req.params;
