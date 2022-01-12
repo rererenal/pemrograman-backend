@@ -12,6 +12,8 @@ router.get("/", (req, res) => {
 //routing
 router.get("/students", StudentController.index);
 
+router.get("/students/:id", StudentController.show);
+
 router.post("/students", StudentController.store);
 
 router.put("/students/:id", StudentController.update);
