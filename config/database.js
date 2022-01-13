@@ -17,5 +17,5 @@ dbconnection.connect((err)=>{
     }
     console.log(`Connected as id : ${dbconnection.threadId}`);
 });
-//export db connection untuk digunakan pada model
+//export db connection untuk module
 module.exports = dbconnection;

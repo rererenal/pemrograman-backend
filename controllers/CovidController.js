@@ -1,5 +1,5 @@
 // TODO 4: SETUP CONTROLLER
-
+//memanggil fungsi dari express
 const Covid = require("../models/Covid");
 
 class CovidController {
@@ -51,24 +51,24 @@ class CovidController {
 
 
     }
-    // // function status menggantikan function positive, recovered, dan dead secara langsung
-    // //dengan mengguanakan params yang dikirim dari endpoint
-    // async status(req, res){
-    //     const {status} = req.params;
-    //     const findData = await Covid.findByStatus(status);
-    //     if (findData){
-    //         const data = {
-    //             message : `Menampilkan data pasien ${status}`,
-    //             data : findData
-    //         }
-    //         return res.status(200).json(data);;
-    //     }
-    //     const data = {
-    //         message : "key params invalid",
-    //         error : `status ${status} doesn't exist`
-    //     }
-    //     return res.status(404).json(data);
-    // }
+    // function status menggantikan function positive, recovered, dan dead secara langsung
+    //dengan mengguanakan params yang dikirim dari endpoint
+    async status(req, res){
+        const {status} = req.params;
+        const findData = await Covid.findByStatus(status);
+        if (findData){
+            const data = {
+                message : `Menampilkan data pasien ${status}`,
+                data : findData
+            }
+            return res.status(200).json(data);;
+        }
+        const data = {
+            message : "key params invalid",
+            error : `status ${status} doesn't exist`
+        }
+        return res.status(404).json(data);
+    }
 
     async store(req, res){
         const insert = await Covid.create(req.body);

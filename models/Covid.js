@@ -1,5 +1,6 @@
 // TODO 5: SETUP MODEL
 const res = require("express/lib/response");
+//impor fungsi db
 const db = require("../config/database");
 
 class Covid{

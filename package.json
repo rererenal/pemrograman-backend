@@ -9,7 +9,7 @@
     "start": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": " ",
   "license": "ISC",
   "dependencies": {
     "base64url": "^3.0.1",

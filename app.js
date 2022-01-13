@@ -8,7 +8,7 @@ const express = require("express");
 const req = require("express/lib/request");
 const res = require("express/lib/response");
 
-//menyimpan express pada variable app
+//menyimpan express pada variable 
 const app = express();
 
 //express menggunakan middleware json untuk mengolah data

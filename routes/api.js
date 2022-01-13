@@ -16,13 +16,14 @@ router.get("/patients/:id", CovidController.show);
 
 router.get("/patients/search/:name", CovidController.search);
 
-router.get("/patients/status/positive", CovidController.positive);
+// router.get("/patients/status/positive", CovidController.positive);
 
-router.get("/patients/status/recovered", CovidController.recovered);
+// router.get("/patients/status/recovered", CovidController.recovered);
 
-router.get("/patients/status/dead", CovidController.dead);
+// router.get("/patients/status/dead", CovidController.dead);
 
-// router.get("/patients/status/:status", CovidController.status);
+//reouter api pengganti api positive, recovered, dan dead
+router.get("/patients/status/:status", CovidController.status);
 
 router.post("/patients", CovidController.store);
 
