@@ -5,7 +5,7 @@ const Covid = require("../models/Covid");
 class CovidController {
     async index(req, res){
         const resource = await Covid.all();
-        if (resource.length > 0) {
+        if (resource) {
             const data = {
                 message : "Menampilkan semua data pasien",
                 data : resource
